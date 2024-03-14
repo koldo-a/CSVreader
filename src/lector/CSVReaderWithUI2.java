@@ -10,19 +10,21 @@ public class CSVReaderWithUI2 {
     private static String inputFilePath;
     private static String outputFilePath;
     private static JTextArea consoleTextArea; // Componente para mostrar los mensajes de consola
+    private static JTable table;
 
     public static void main(String[] args) {
         // Crear y configurar la ventana de selección de archivo
         JFrame frame = new JFrame("Seleccionar Archivo");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(400, 250);
-        frame.setLayout(new BorderLayout());
+        frame.getContentPane().setLayout(new BorderLayout());
 
         // Panel para el campo de texto y el botón de selección de archivo
         JPanel fileSelectionPanel = new JPanel(new BorderLayout());
 
         // Campo de texto para mostrar la ruta del archivo seleccionado
         JTextField textField = new JTextField(20);
+        textField.setForeground(new Color(0, 0, 255));
         fileSelectionPanel.add(textField, BorderLayout.CENTER);
 
         // Botón para seleccionar el archivo
@@ -37,10 +39,14 @@ public class CSVReaderWithUI2 {
                 }
             }
         });
+        
+        table = new JTable();
+        table.setForeground(new Color(0, 0, 255));
+        fileSelectionPanel.add(table, BorderLayout.NORTH);
         fileSelectionPanel.add(selectButton, BorderLayout.EAST);
 
         // Agregar el panel de selección de archivo a la región norte de la ventana
-        frame.add(fileSelectionPanel, BorderLayout.NORTH);
+        frame.getContentPane().add(fileSelectionPanel, BorderLayout.NORTH);
 
         // Panel para botones
         JPanel buttonPanel = new JPanel(new FlowLayout());
@@ -70,13 +76,15 @@ public class CSVReaderWithUI2 {
         buttonPanel.add(readButton);
 
         // Agregar el panel de botones a la región sur de la ventana
-        frame.add(buttonPanel, BorderLayout.SOUTH);
+        frame.getContentPane().add(buttonPanel, BorderLayout.SOUTH);
 
         // JTextArea para mostrar los mensajes de consola
         consoleTextArea = new JTextArea();
+        consoleTextArea.setForeground(new Color(255, 0, 0));
+        consoleTextArea.setBackground(new Color(236, 231, 221));
         consoleTextArea.setEditable(false); // Hacer que el JTextArea no sea editable
         JScrollPane scrollPane = new JScrollPane(consoleTextArea);
-        frame.add(scrollPane, BorderLayout.CENTER);
+        frame.getContentPane().add(scrollPane, BorderLayout.CENTER);
 
         // Redirigir la salida estándar y la salida de error estándar a JTextArea
         PrintStream printStream = new PrintStream(new CustomOutputStream(consoleTextArea));
