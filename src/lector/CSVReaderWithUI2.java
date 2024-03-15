@@ -16,11 +16,17 @@ public class CSVReaderWithUI2 {
         // Crear y configurar la ventana de selección de archivo
         JFrame frame = new JFrame("Seleccionar Archivo");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(400, 250);
-        frame.getContentPane().setLayout(new BorderLayout());
+        frame.setSize(404, 350);
+        BorderLayout borderLayout = new BorderLayout();
+        borderLayout.setVgap(12);
+        borderLayout.setHgap(12);
+        frame.getContentPane().setLayout(borderLayout);
 
         // Panel para el campo de texto y el botón de selección de archivo
-        JPanel fileSelectionPanel = new JPanel(new BorderLayout());
+        BorderLayout bl_fileSelectionPanel = new BorderLayout();
+        bl_fileSelectionPanel.setVgap(12);
+        bl_fileSelectionPanel.setHgap(12);
+        JPanel fileSelectionPanel = new JPanel(bl_fileSelectionPanel);
 
         // Campo de texto para mostrar la ruta del archivo seleccionado
         JTextField textField = new JTextField(20);
